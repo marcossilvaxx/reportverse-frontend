@@ -1,0 +1,19 @@
+.menu-mobile{
+    height: 40px;
+    width: 100%;
+    z-index: 1;
+    background-color: #32B9BE;
+    position: absolute;
+    bottom: 0px;
+    align-items: center;
+    justify-content: center;
+    
+    display: flex;
+
+    .menu-mobile-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 67px;
+
+    }
+}
