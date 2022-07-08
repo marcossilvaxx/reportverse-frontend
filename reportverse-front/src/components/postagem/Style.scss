@@ -2,12 +2,65 @@
 .collapsible{
     padding-left: 12px;
 }
+.comentarios{
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: 2;
+}
 .postagem{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    .postagem-barra-acoes{
+        width: 100%;
+        height: 30px;
+        background-color: #EDEDED;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -4px;
+
+        .postagem-barra-acoes-conteudo{
+            width: 85%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .postagem-barra-acoes-conteudo-left{
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+
+                .postagem-barra-acoes-conteudo-left-comentario{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    
+                }
+                span{
+                    font-size: 0.6em;
+                    color: #858585;
+                }
+
+                
+            }
+        }
+    }
+
+    .postagem-foto{
+        margin-top: 16px;
+        padding-bottom: 0px;
+        img{
+            background-size: cover;
+            width: 100vw;
+            height: auto;
+        }
+    }
     
    .postagem-texto{
         width: 85%;
