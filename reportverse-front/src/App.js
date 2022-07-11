@@ -1,19 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/loginPage/loginPageComponent';
-import RegisterPage from './pages/registerPage/registerPageComponent';
-import Home from './pages/home/Index';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './router/Routes';
+import Header from './components/Header';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
+  const [width,] = useWindowSize();
+
   return (
-    <div>
-       <Routes>
-        <Route exact path="/" element={<LoginPage/>} />
-        <Route exact path="/register" element={<RegisterPage/>} />
-        <Route exact path="/home" element={<Home/>} />
-      </Routes>
-    </div>
+    <BrowserRouter>
+      {width > 768 ? <Header /> : null}
+      <Routes/>
+    </BrowserRouter>
   );
 }
 
