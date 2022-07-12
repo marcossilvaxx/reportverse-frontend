@@ -8,7 +8,7 @@ import REPORTACTIVE from "../../assets/report-active.png";
 import LIKENEUTRO from "../../assets/like-neutro.png";
 import LIKEACTIVE from "../../assets/like-active.png";
 import COMENTAR from "../../assets/comentar.png";
-import Comentarios from "../comentarios/Index";
+import Comentario from "../comentario/Index";
 
 
 const Postagem = () => {
@@ -47,7 +47,27 @@ const Postagem = () => {
         return(
             <>
             <div className="comentarios">
-                <span onClick={()=>{setIsCommentOpen(false)}}>voltar</span>
+            <span onClick={()=>{setIsCommentOpen(false)}}>voltar</span>
+                <div className="postagem">
+                    <div className="postagem-header">
+                        <div className="postagem-header-left">
+                            <h3>Fulano123</h3>
+                            <p>09:26 - 07/06/2022</p>
+                        </div>
+                        <div className="postagem-header-right">
+                            <a><img src={LOCATIONICON} /></a>
+                        </div>
+                    </div>
+
+                    <div className="postagem-texto">
+                        {textinho}
+                    </div>
+                    
+                    
+                </div>
+                <div className="comentarios-lista">
+                        <Comentario nome="Fulano123" dataPostagem={"09:27 - 07/06/2022"}  texto="É imoral isso, também percebo!" />
+                </div>
             </div>
             </>
             
