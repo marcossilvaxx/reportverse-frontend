@@ -6,7 +6,7 @@
     width: 100vw;
     height: 100vh;
     background: #fff;
-    z-index: 2;
+    z-index: 2 !important;
 
     .postagem{
         margin-top: 32px;
@@ -21,6 +21,66 @@
     .comentarios-lista{
         margin-top: 24px;
     }
+
+    .comentarios-voltar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 16px;
+        margin-top: 20px;
+        span{
+            font-size: 1.2em;
+            color: #0E0E0E;
+            font-weight: bold;
+            margin-left: 12px ;
+        }
+
+        img{
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .comentarios-digitar{
+        height: 40px;
+        width: 100%;
+        z-index: 2 !important;
+        background-color: #EDEDED;
+        position: fixed;
+        bottom: 0px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+        .comentarios-digitar-container{
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+            .comentarios-digitar-container-text{
+
+                input{
+                    border: none;
+                    background: #EDEDED;
+                    outline: none;
+                    height: 20px;
+                    min-width: 230px ;
+                }
+                input:focus{
+                    border-bottom: 1px solid #d6d6d6;
+                }
+                
+            }
+            .comentarios-digitar-container-action{
+                color: #32B9BE;
+                font-size: 1em;
+                font-weight: 600;
+                
+            }
+        }
+    }
+    
 }
 .postagem{
     width: 100%;
