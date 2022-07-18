@@ -7,6 +7,9 @@
     height: 100vh;
     background: #fff;
     z-index: 2 !important;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
 
     .postagem{
         margin-top: 32px;
@@ -88,6 +91,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 40px;
+    
 
     .postagem-barra-acoes{
         width: 100%;

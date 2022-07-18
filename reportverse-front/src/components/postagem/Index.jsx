@@ -10,14 +10,18 @@ import LIKEACTIVE from "../../assets/like-active.png";
 import COMENTAR from "../../assets/comentar.png";
 import VOLTAR from "../../assets/voltar.png";
 import Comentario from "../comentario/Index";
+import Comentarios from "../comentarios/Index";
 
 
-const Postagem = () => {
+
+
+const Postagem = ({id}) => {
 
     const [isLiked,setIsLiked] = useState(false);
     const [isReported,setIsReported] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
     const [isCommentOpen,setIsCommentOpen] = useState(false);
+
     
 
     const textinho = "Gostaria de denunciar uma obra parada em frente ao bloco tal do departamento de Engenharia Elétrica. Já fazem 6 meses que não noto nenhuma mudança na construção."
@@ -44,58 +48,11 @@ const Postagem = () => {
         </>   )
     }
 
-    const  OpenComment = ()=> {
-        return(
-            <>
-            <div className="comentarios">
-            <div className="comentarios-voltar"  onClick={()=>{setIsCommentOpen(false)}}>
-                <img src={VOLTAR} />
-                <span>Comentários</span>
-            </div>
-            
-                <div className="postagem">
-                    <div className="postagem-header">
-                        <div className="postagem-header-left">
-                            <h3>Fulano123</h3>
-                            <p>09:26 - 07/06/2022</p>
-                        </div>
-                        <div className="postagem-header-right">
-                            <a><img src={LOCATIONICON} /></a>
-                        </div>
-                    </div>
-
-                    <div className="postagem-texto">
-                        {textinho}
-                    </div>
-                    
-                    
-                </div>
-                <div className="comentarios-lista">
-                        <Comentario nome="Fulano123" dataPostagem={"09:27 - 07/06/2022"}  texto="É imoral isso, também percebo!" />
-                </div>
-
-                <div className="comentarios-digitar">
-                    <div className="comentarios-digitar-container">
-                        <div className="comentarios-digitar-container-text">
-                            <input placeholder="digite algo..."/>
-                        </div>
-                        <div className="comentarios-digitar-container-action">
-                            Comentar
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            </>
-            
-        )
-        
-    } 
 
     return(
         <>
-        {isCommentOpen ? OpenComment() : null }
-        <div className="postagem">
+        {isCommentOpen ? <Comentarios texto={textinho} callback={setIsCommentOpen} /> : 
+        (<div className="postagem">
             <div className="postagem-header">
                 <div className="postagem-header-left">
                     <h3>Fulano123</h3>
@@ -120,7 +77,7 @@ const Postagem = () => {
                         <div onClick={()=>{setIsLiked(!isLiked)}}>
                             {isLiked ? (<img src={LIKEACTIVE}/>) : (<img src={LIKENEUTRO}/>) }
                         </div>
-                        <div className="postagem-barra-acoes-conteudo-left-comentario" onClick={()=>{setIsCommentOpen(!isCommentOpen)}}>
+                        <div className="postagem-barra-acoes-conteudo-left-comentario" onClick={()=>{setIsCommentOpen(true)}}>
                             <img src={COMENTAR} /> <span>ver comentarios</span>
                         </div>
                         
@@ -131,7 +88,7 @@ const Postagem = () => {
                 </div>
 
             </div>
-        </div>
+        </div>)}
         
         </>
     )

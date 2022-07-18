@@ -1,4 +1,4 @@
-import {React,useState} from "react";
+import {React} from "react";
 import './Style.scss';
 
 const Comentario = ({nome, dataPostagem, texto}) => {
