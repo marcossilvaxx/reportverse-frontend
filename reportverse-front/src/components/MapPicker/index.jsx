@@ -18,7 +18,13 @@ function MapPicker({ onChangeCallback, width, height, mapStyle }) {
   };
 
   return (
-    <LocationPicker mapStyle={{ ...mapStyle, height: height, width: width }} pointMode={pointMode} showInputs={false} showControls={false} />
+    <LocationPicker 
+      mapStyle={{ ...mapStyle, height: height, width: width }} 
+      pointMode={pointMode} 
+      showInputs={false} 
+      showControls={false}
+      startPort={{ center: [-7.21430, -35.9084], zoom: 17 }}
+    />
   );
 }
 

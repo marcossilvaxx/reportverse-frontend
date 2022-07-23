@@ -3,13 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 import './styles.scss';
 import reportverseLogo from '../../assets/reportverse-logo.svg';
 import postarIcon from '../../assets/postar.svg';
-import postarAmareloIcon from '../../assets/postar-amarelo.png';
+import postarAmareloIcon from '../../assets/postar-amarelo.svg';
 import localizacaoIcon from '../../assets/location.svg';
-import localizacaoAmareloIcon from '../../assets/localizacao-amarelo.png';
+import localizacaoAmareloIcon from '../../assets/location-amarelo.svg';
 import homeIcon from '../../assets/home.svg';
-import homeAmareloIcon from '../../assets/home-amarelo.png';
+import homeAmareloIcon from '../../assets/home-amarelo.svg';
 import profileIcon from '../../assets/profile.svg';
-import profileAmareloIcon from '../../assets/profile-amarelo.png';
+import profileAmareloIcon from '../../assets/profile-amarelo.svg';
 import logoutIcon from '../../assets/logout.svg';
 
 function Header({ history }) {
