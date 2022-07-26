@@ -5,7 +5,8 @@ import Comentario from "../comentario/Index";
 import LOCATIONICON from "../../assets/location-icon.png";
 
 
-const Comentarios = ({texto,callback}) => {
+const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,texto}) => {
+
 
     return(
         <>
@@ -18,8 +19,8 @@ const Comentarios = ({texto,callback}) => {
             <div className="postagem">
                 <div className="postagem-header">
                     <div className="postagem-header-left">
-                        <h3>Fulano123</h3>
-                        <p>09:26 - 07/06/2022</p>
+                        <h3>{nomePostagem}</h3>
+                        <p>{horarioPostagem}</p>
                     </div>
                     <div className="postagem-header-right">
                         <a><img src={LOCATIONICON}  alt="localizacao"/></a>
@@ -33,7 +34,11 @@ const Comentarios = ({texto,callback}) => {
                 
             </div>
             <div className="comentarios-lista">
-                    <Comentario nome="Fulano123" dataPostagem={"09:27 - 07/06/2022"}  texto="É imoral isso, também percebo!" />
+                {comentarios.map((comentario,idx) => {
+                    return(
+                        <Comentario nome={comentario.nome} dataPostagem={comentario.horario}  texto={horario.texto} key={idx} />
+                    )
+                })}          
             </div>
 
             <div className="comentarios-digitar">

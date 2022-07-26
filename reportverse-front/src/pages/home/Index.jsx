@@ -3,11 +3,12 @@ import './Style.scss';
 import MenuMobile from "../../components/menuMobile/Index";
 import Postagem from "../../components/postagem/Index";
 import LOGOPRINCIPAL from "../../assets/REPORTVERSE-LOGO.png"
+import { listarTodasPostagens } from "../../axios/response/response";
 
 
 const Home = () => {
 
- 
+    let postagens = listarTodasPostagens();
 
     return(
         <>
@@ -18,9 +19,22 @@ const Home = () => {
             </div>
           </div>
         
-          <Postagem/>
-          <Postagem id="2" />
-            
+          {postagens.map((postagem, idx) => {
+
+            return(
+              <Postagem
+                horario={postagem.horario}
+                descricao={postagem.descricao}
+                latitude={postagem.latitude}
+                longitude={postagem.longitude}
+                nome={postagem.nome}
+                comentarios={postagem.comentarios}
+                imagem={postagem.imagem}
+                key={idx}
+                />
+            )
+          })}
+                  
           <MenuMobile selectIcon="home" />
         </div>
         </>

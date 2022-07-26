@@ -8,14 +8,20 @@ import REPORTACTIVE from "../../assets/report-active.png";
 import LIKENEUTRO from "../../assets/like-neutro.png";
 import LIKEACTIVE from "../../assets/like-active.png";
 import COMENTAR from "../../assets/comentar.png";
-import VOLTAR from "../../assets/voltar.png";
-import Comentario from "../comentario/Index";
 import Comentarios from "../comentarios/Index";
 
 
 
 
-const Postagem = ({id}) => {
+const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imagem, key}) => {
+
+    // horario: post.horario,
+    // descricao: post.description,
+    // latitude: post.latitude,
+    // longitude: post.longitude,
+    // nome: nome, //lembrar de configurar
+    // comentarios: post.comentarios
+    // imagem:post.imagem
 
     const [isLiked,setIsLiked] = useState(false);
     const [isReported,setIsReported] = useState(false);
@@ -51,12 +57,12 @@ const Postagem = ({id}) => {
 
     return(
         <>
-        {isCommentOpen ? <Comentarios texto={textinho} callback={setIsCommentOpen} /> : 
-        (<div className="postagem">
+        {isCommentOpen ? <Comentarios texto={descricao} callback={setIsCommentOpen} comentarios={comentarios} nomePostagem={nome} horarioPostagem={horario}/> : 
+        (<div className="postagem" key={key}>
             <div className="postagem-header">
                 <div className="postagem-header-left">
-                    <h3>Fulano123</h3>
-                    <p>09:26 - 07/06/2022</p>
+                    <h3>{nome}</h3>
+                    <p>{horario}</p>
                 </div>
                 <div className="postagem-header-right">
                     <a><img src={LOCATIONICON} /></a>
@@ -64,11 +70,11 @@ const Postagem = ({id}) => {
             </div>
 
             <div className="postagem-texto">
-                {Collapsible(textinho)}
+                {Collapsible(descricao)}
             </div>
 
             <div className="postagem-foto">
-                <img src={IMAGEMPOST} />
+                <img src={imagem} />
             </div>
 
             <div className="postagem-barra-acoes">
