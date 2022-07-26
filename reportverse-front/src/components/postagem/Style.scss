@@ -10,19 +10,25 @@
     position: absolute;
     top: 0px;
     overflow: hidden;
+    
 
     .postagem{
         margin-top: 32px;
         padding-bottom: 24px;
         border-bottom: 1px solid #EDEDED;
+        
 
         .comentarios-lista{
             margin-top: 16px;
+            
         }
+
     }
 
     .comentarios-lista{
         margin-top: 24px;
+        
+        
     }
 
     .comentarios-voltar{
@@ -92,6 +98,7 @@
     justify-content: center;
     flex-direction: column;
     margin-bottom: 40px;
+    max-width: 900px;
     
 
     .postagem-barra-acoes{
@@ -134,9 +141,11 @@
     .postagem-foto{
         margin-top: 16px;
         padding-bottom: 0px;
+       
         img{
             background-size: cover;
             width: 100vw;
+            max-width: 900px;
             height: auto;
         }
     }
