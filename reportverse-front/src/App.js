@@ -1,16 +1,27 @@
-import { BrowserRouter } from 'react-router-dom';
-import Routes from './router/Routes';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import useWindowSize from './hooks/useWindowSize';
+import LoginPage from './pages/loginPage/loginPageComponent';
+import RegisterPage from './pages/registerPage/registerPageComponent';
+import Home from './pages/home/Index';
+import NewPost from './pages/newPost/index';
+import Map from './pages/map/index';
 
 function App() {
-  const [width,] = useWindowSize();
+  const [width] = useWindowSize();
 
   return (
-    <BrowserRouter>
-      {width > 768 ? <Header /> : null}
-      <Routes/>
-    </BrowserRouter>
+    <div>
+      {//width > 768 ? <Header /> : null
+      }
+      <Routes>
+        <Route exact path="/" element={<LoginPage/>} />
+        <Route exact path="/register" element={<RegisterPage/>} />
+        <Route exact path="/home" element={<Home/>} />
+        <Route exact path="/postar" element={<NewPost/>} />
+        <Route exact path="/mapa" element={<Map/>} />
+      </Routes>
+    </div>
   );
 }
 

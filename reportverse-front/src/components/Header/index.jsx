@@ -39,4 +39,4 @@ function Header({ history }) {
   );
 }
 
-export default withRouter(Header);
+export default Header;

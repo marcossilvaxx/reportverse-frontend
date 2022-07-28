@@ -13,15 +13,8 @@ import Comentarios from "../comentarios/Index";
 
 
 
-const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imagem, key}) => {
+const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imagem}) => {
 
-    // horario: post.horario,
-    // descricao: post.description,
-    // latitude: post.latitude,
-    // longitude: post.longitude,
-    // nome: nome, //lembrar de configurar
-    // comentarios: post.comentarios
-    // imagem:post.imagem
 
     const [isLiked,setIsLiked] = useState(false);
     const [isReported,setIsReported] = useState(false);
@@ -58,7 +51,7 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
     return(
         <>
         {isCommentOpen ? <Comentarios texto={descricao} callback={setIsCommentOpen} comentarios={comentarios} nomePostagem={nome} horarioPostagem={horario}/> : 
-        (<div className="postagem" key={key}>
+        (<div className="postagem">
             <div className="postagem-header">
                 <div className="postagem-header-left">
                     <h3>{nome}</h3>

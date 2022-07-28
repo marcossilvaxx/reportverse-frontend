@@ -5,7 +5,7 @@ import Comentario from "../comentario/Index";
 import LOCATIONICON from "../../assets/location-icon.png";
 
 
-const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,texto}) => {
+const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem}) => {
 
 
     return(
@@ -36,7 +36,7 @@ const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,
             <div className="comentarios-lista">
                 {comentarios.map((comentario,idx) => {
                     return(
-                        <Comentario nome={comentario.nome} dataPostagem={comentario.horario}  texto={horario.texto} key={idx} />
+                        <Comentario nome={comentario.nome} dataPostagem={comentario.horario}  texto={comentario.texto} key={idx} />
                     )
                 })}          
             </div>
