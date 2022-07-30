@@ -9,11 +9,12 @@ import LIKENEUTRO from "../../assets/like-neutro.png";
 import LIKEACTIVE from "../../assets/like-active.png";
 import COMENTAR from "../../assets/comentar.png";
 import Comentarios from "../comentarios/Index";
+import { denunciarPostagem } from "../../axios/response/response";
 
 
 
 
-const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imagem}) => {
+const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imagem, idPostagem}) => {
 
 
     const [isLiked,setIsLiked] = useState(false);
@@ -21,9 +22,13 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
     const [isOpen,setIsOpen] = useState(false);
     const [isCommentOpen,setIsCommentOpen] = useState(false);
 
-    
-
-    const textinho = "Gostaria de denunciar uma obra parada em frente ao bloco tal do departamento de Engenharia Elétrica. Já fazem 6 meses que não noto nenhuma mudança na construção."
+    async function reportar(){
+        setIsReported(!isReported);
+        
+        if(isReported==false){
+            await denunciarPostagem(idPostagem);
+        }
+    }
 
     function Collapsible(texto){
         let textoReduzido = texto.split(" ", 15);
@@ -47,15 +52,24 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
         </>   )
     }
 
+    function formataHorario(horario){
+        const novoHorario = `${horario[8]+horario[9]} - ${horario[5]+horario[6]} - ${horario[0]+horario[1]+horario[2]+horario[3]}`
+        return novoHorario;
+    }
+
+    
+    
+
+
 
     return(
         <>
-        {isCommentOpen ? <Comentarios texto={descricao} callback={setIsCommentOpen} comentarios={comentarios} nomePostagem={nome} horarioPostagem={horario}/> : 
+        {isCommentOpen ? <Comentarios texto={descricao} callback={setIsCommentOpen} comentarios={comentarios} nomePostagem={nome} horarioPostagem={formataHorario(horario)} idPostagem={idPostagem} /> : 
         (<div className="postagem">
             <div className="postagem-header">
                 <div className="postagem-header-left">
                     <h3>{nome}</h3>
-                    <p>{horario}</p>
+                    <p>{formataHorario(horario)}</p>
                 </div>
                 <div className="postagem-header-right">
                     <a><img src={LOCATIONICON} /></a>
@@ -81,7 +95,7 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
                         </div>
                         
                     </div>
-                    <div className="postagem-barra-acoes-conteudo-right" onClick={()=>{setIsReported(!isReported)}}>
+                    <div className="postagem-barra-acoes-conteudo-right" onClick={()=>{reportar()}}>
                         {isReported ? (<img src={REPORTACTIVE}/>) : (<img src={REPORTNEUTRO}/>) }
                     </div>
                 </div>

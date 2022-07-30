@@ -34,8 +34,6 @@ const Home = () => {
           </div>
           
           {postagens.length>0 && postagens.map(postagem => {
-           
-           
             return(
           
               <React.Fragment key={postagem.nome}>
@@ -47,6 +45,7 @@ const Home = () => {
                 nome={postagem.nome}
                 comentarios={postagem.comentarios}
                 imagem={postagem.imagem}
+                idPostagem={postagem.postagemId}
                 />
               </React.Fragment>
               

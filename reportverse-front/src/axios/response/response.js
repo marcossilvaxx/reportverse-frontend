@@ -15,11 +15,9 @@ async function listarTodasPostagens(){
          postagens = await Promise.all(
             res.data.map( async post => { 
                 let nomeUser = "";
-                
                 await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': TOKEN} }).then(resposta => {
                     nomeUser = resposta.data.name;
-                })
-                  
+                })        
                 const postagem = {
                     horario: post.creationDate,
                     descricao: post.description,
@@ -31,23 +29,43 @@ async function listarTodasPostagens(){
                     postagemId: post.id
                     }
                 return postagem;
-        
             })
          )   
 
             
         }
     )
-    
     return postagens;
-   
+}
+
+
+async function denunciarPostagem(IdPostagem){
+    await axios.put(`${URL}/publicacao/${IdPostagem}/reportar`,{},{ 'headers': { 'Authorization': TOKEN} }).then(resposta =>{
+    console.log(resposta);
+});
+}
+
+
+
+async function comentarPostagem(IdPostagem,mensagem){
+    await axios.post(`${URL}/publicacao/${IdPostagem}/comentario`,
+    {
+        text: mensagem,
+        isAuthorAnonymous: false
+    },
+    { 
+        'headers':{ 'Authorization': TOKEN} 
+    }).then(resposta => {
+        console.log(resposta);
+    })
+    
 }
 
 
 
 
 
-export {listarTodasPostagens} ;
+export {listarTodasPostagens,denunciarPostagem, comentarPostagem} 
 
 
 
