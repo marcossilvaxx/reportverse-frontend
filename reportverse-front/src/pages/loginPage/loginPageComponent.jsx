@@ -38,13 +38,12 @@ const LoginPage = () => {
                 <Button className="Button">
                     Fazer Login
                 </Button>
-                <h6>Esqueci a senha</h6>
-                <hr></hr>
-                <h6>Já tenho conta | Login</h6>
+                <div className='final'>
+                    <h6>Esqueci a senha</h6>
+                    <hr></hr>
+                    <h6>Já tenho conta | Login</h6>
+                </div>
             </div>
-
-            
-        
         </>
     )
 }
