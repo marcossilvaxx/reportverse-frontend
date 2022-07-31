@@ -10,6 +10,7 @@ import LIKEACTIVE from "../../assets/like-active.png";
 import COMENTAR from "../../assets/comentar.png";
 import Comentarios from "../comentarios/Index";
 import { denunciarPostagem } from "../../axios/response/response";
+import DetalhesLocalizacao from "../DetalhesLocalizacao/Index";
 
 
 
@@ -21,6 +22,7 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
     const [isReported,setIsReported] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
     const [isCommentOpen,setIsCommentOpen] = useState(false);
+    const [isLocalizacaoOpen, setIsLocalizacaoOpen] = useState(false);
 
     async function reportar(){
         setIsReported(!isReported);
@@ -64,6 +66,8 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
 
     return(
         <>
+        {isLocalizacaoOpen ? <DetalhesLocalizacao texto={descricao} nomePostagem={nome} horarioPostagem={formataHorario(horario)} eixoX={latitude} eixoY={longitude} callback={setIsLocalizacaoOpen} /> : null}
+
         {isCommentOpen ? <Comentarios texto={descricao} callback={setIsCommentOpen} comentarios={comentarios} nomePostagem={nome} horarioPostagem={formataHorario(horario)} idPostagem={idPostagem} /> : 
         (<div className="postagem">
             <div className="postagem-header">

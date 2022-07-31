@@ -56,7 +56,7 @@ const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,
                 <div className="postagem-texto">
                     {texto}
                 </div>
-                
+                 
                 
             </div>
             <div className="comentarios-lista">

@@ -1,0 +1,28 @@
+.detalhesLocalizacao{
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: 2 !important;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+
+    .detalhesLocalizacao-voltar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 16px;
+        margin-top: 20px;
+        span{
+            font-size: 1.2em;
+            color: #0E0E0E;
+            font-weight: bold;
+            margin-left: 12px ;
+        }
+
+        img{
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
