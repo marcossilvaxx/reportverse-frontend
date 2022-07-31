@@ -28,10 +28,10 @@ function RegisterPage() {
         
         const data = new FormData();
         
-        data.append(nameRef.current.value);
-        data.append(passwordRef.current.value);
-        data.append(confirmPasswordRef);
-        data.append(emailRef.current.value);
+        data.append("name",nameRef.current.value);
+        data.append("password",passwordRef.current.value);
+        data.append("passwordConfirmation",confirmPasswordRef);
+        data.append("username",emailRef.current.value);
 
         await axios.post('https://reportverse.herokuapp.com/api/usuario/cadastro', data);
         console.log("Cadastro realizado com sucesso");
