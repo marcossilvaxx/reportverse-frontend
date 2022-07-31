@@ -1,12 +1,41 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+import Button from '../../components/Button';
+
 import LOGOPRINCIPAL from "../../assets/logo.png";
 import logoMapa from '../../assets/Logo_Mapa.png';
-import Button from '../../components/Button';
+
 
 import './registerPageStyle.scss' ;
 
-const RegisterPage = () => {
+function RegisterPage() {
 
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const confirmPasswordRef = useRef(null);
+    const nameRef = useRef(null);
+
+    const isValid = () => !!(emailRef.current.value && passwordRef.current.value && confirmPasswordRef.current.value && nameRef.current.value && (passwordRef.current.value === confirmPasswordRef.current.value));
+
+    const handleSubmit = async () => {
+        console.log(isValid());
+        if (!isValid()) {
+            alert("Preencha todos os campos");
+            return;
+        }
+        
+        const data = new FormData();
+        
+        data.append(nameRef.current.value);
+        data.append(passwordRef.current.value);
+        data.append(confirmPasswordRef);
+        data.append(emailRef.current.value);
+
+        await axios.post('https://reportverse.herokuapp.com/api/usuario/cadastro', data);
+        console.log("Cadastro realizado com sucesso");
+    }
 
     return(
         <>
@@ -16,7 +45,6 @@ const RegisterPage = () => {
                     <div>
                         <img src={logoMapa} alt="logoMapa"/>
                     </div>
-                    
                 </div>
             </div>
 
@@ -26,33 +54,31 @@ const RegisterPage = () => {
                 </div>
                 <section>
                     <h5>Login</h5>
-                    <textarea name = "login" placeholder='Insira o seu email de login'></textarea>
+                    <input name = "login" placeholder='Insira o seu email de login' ref={emailRef}></input>
                 </section>
 
                 <section>
                     <h5>Senha</h5>
-                    <textarea name = "senha" placeholder='Algo seguro cai bem'></textarea>
+                    <input name = "senha" placeholder='Algo seguro cai bem' type = 'password' ref={passwordRef}></input>
+                </section>
+
+                <section>
+                    <h5>Confirme a senha</h5>
+                    <input name = "confirmacaoSenha" placeholder='As senhas devem ser iguais' type = 'password' ref={confirmPasswordRef}></input>
                 </section>
 
                 <section>
                     <h5>Nome</h5>
-                    <textarea name = "nome" placeholder='Seu nome publico no site'></textarea>
+                    <input name = "nome" placeholder='O seu nome completo' ref={nameRef}></input>
                 </section>
 
-                <section>
-                    <h5>Curso</h5>
-                    <textarea name = "curso"> </textarea>
-                </section>
-
-                <Button className="Button">
+                <Button className="Button" onClick={handleSubmit}>
                     Cadastrar
                 </Button>
-                <hr></hr>
-                <h6>Já tenho conta | Login</h6>
-            </div>
 
-            
-        
+                <hr></hr>
+                <h6>Já tenho uma conta | <Link to="/">Login</Link></h6>
+            </div>
         </>
     )
 }

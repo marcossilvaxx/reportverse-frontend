@@ -9,8 +9,8 @@ import RegisterPage from '../pages/registerPage/registerPageComponent';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" render={LoginPage} />
-      <Route exact path="/register" render={RegisterPage} />
+      <Route exact path="/" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
       <Route exact path="/home" render={Home} />
       <Route exact path="/postar" render={NewPost} />
       <Route exact path="/mapa" render={Map} />

@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {Link} from 'react-router-dom';
+
+import Button from '../../components/Button';
+
 import LOGOPRINCIPAL from "../../assets/logo.png";
 import logoMapa from '../../assets/Logo_Mapa.png';
-import Button from '../../components/Button';
 
 import './loginPageStyle.scss' ;
 
-const LoginPage = () => {
+function LoginPage () {
 
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+
+    const isValid = () => !!(emailRef.current.value && passwordRef.current.value);
+
+    const handleSubmit = async () => {
+        if(!isValid()) {
+            alert("Preencha todos os campos");
+            return;
+        }
+        //colocar aqui o login e mandar o token
+    }
 
     return(
         <>
@@ -26,22 +41,21 @@ const LoginPage = () => {
                 </div>
                 <section>
                     <h5>Login</h5>
-                    <textarea name = "login" placeholder='Insira o seu email de login'></textarea>
+                    <input name = "login" placeholder='Insira o seu email de login' ref={emailRef}></input>
                 </section>
 
                 <section>
                     <h5>Senha</h5>
-                    <textarea name = "senha" placeholder='Insira a sua senha'></textarea>
+                    <input type = "password" name = "senha" placeholder='Insira a sua senha' ref={passwordRef}></input>
                 </section>
 
-
-                <Button className="Button">
+                <Button className="Button" onClick={handleSubmit}>
                     Fazer Login
                 </Button>
                 <div className='final'>
                     <h6>Esqueci a senha</h6>
                     <hr></hr>
-                    <h6>Já tenho conta | Login</h6>
+                    <h6>Cadastre sua conta <Link to="/register">aqui</Link></h6>
                 </div>
             </div>
         </>
