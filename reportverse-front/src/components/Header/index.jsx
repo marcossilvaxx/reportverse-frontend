@@ -28,9 +28,6 @@ function Header({ history }) {
         <Link to="/home">
           <img src={pathname === "/home" ? homeAmareloIcon : homeIcon} alt="Home menu logo" />
         </Link>
-        <Link to="/profile">
-          <img src={pathname === "/profile" ? profileAmareloIcon : profileIcon} alt="Perfil menu logo" />
-        </Link>
         <Link to="/logout">
           <img src={logoutIcon} alt="Logout menu logo" />
         </Link>
