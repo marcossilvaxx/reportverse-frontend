@@ -12,20 +12,21 @@ async function listarTodasPostagens(){
     let postagens;
     await axios.get(`${URL}/publicacao/todas`,{ 'headers': { 'Authorization': TOKEN } }).then(
          async res => {
+            
          postagens = await Promise.all(
             res.data.map( async post => { 
                 let nomeUser = "";
-                await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': TOKEN} }).then(resposta => {
-                    nomeUser = resposta.data.name;
-                })        
+                // await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': TOKEN} }).then(resposta => {
+                //     nomeUser = resposta.data.name;
+                // })        
                 const postagem = {
                     horario: post.creationDate,
                     descricao: post.description,
                     latitude: post.latitude,
                     longitude: post.longitude,
-                    nome: nomeUser,
+                    nome: post.authorName,
                     comentarios: post.comments,
-                    imagem: post.mediasPathList,
+                    imagem: post.medias,
                     postagemId: post.id
                     }
                 return postagem;
@@ -62,10 +63,35 @@ async function comentarPostagem(IdPostagem,mensagem){
 }
 
 
+async function getPostagem(IdPostagem){
+    let postagem;
+    await axios.get(`${URL}/publicacao/${IdPostagem}`,{ 'headers': { 'Authorization': TOKEN } }).then(post =>
+        {
+            postagem = {
+                horario: post.data.creationDate,
+                descricao: post.data.description,
+                latitude: post.data.latitude,
+                longitude: post.data.longitude,
+                nome: post.data.authorName,
+                comentarios: post.data.comments,
+                imagem: post.data.medias,
+                postagemId: post.data.id
+                }
+
+                
+
+            
+        })
+        if(postagem != null){
+            return postagem;
+        }
+        
+}
 
 
 
-export {listarTodasPostagens,denunciarPostagem, comentarPostagem} 
+
+export {listarTodasPostagens,denunciarPostagem, comentarPostagem,getPostagem} 
 
 
 

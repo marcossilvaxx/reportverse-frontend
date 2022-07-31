@@ -6,18 +6,32 @@ import LOCATIONICON from "../../assets/location-icon.png";
 import { comentarPostagem } from "../../axios/response/response";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getPostagem } from "../../axios/response/response";
 
 
-const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem, idPostagem}) => {
+const Comentarios = () => {
 
     const [comment,setComment] = useState({comentario:""});
     const {comentario} = comment;
+    let { postagemId } = useParams();
+    const [postagem,setPostagem] = useState();
+
+    useEffect(()=>{
+        pegarPostagem();
+      },[]);
+
+      const pegarPostagem = async () => {
+        const postagemResponse = await getPostagem(postagemId);
+        setPostagem(postagemResponse);
+      }
 
     
 
     async function comentar(){
-        await comentarPostagem(idPostagem,comentario);
+        await comentarPostagem(postagem.postagemId,comentario);
         setComment({comentario: ""});
+        window.location.reload();
     }
     
     const handleChange =(event) => {
@@ -25,28 +39,31 @@ const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,
         setComment({...comment, [name]:value});  
       };
 
-
-
-    function formataHorario(horario){
-        const novoHorario = `${horario[8]+horario[9]} - ${horario[5]+horario[6]} - ${horario[0]+horario[1]+horario[2]+horario[3]}`
-        return novoHorario;
+      function formataHorario(horario){
+        if(horario!= null){
+            const novoHorario = `${horario[8]+horario[9]} - ${horario[5]+horario[6]} - ${horario[0]+horario[1]+horario[2]+horario[3]}`
+            return novoHorario;
+        }
     }
+
+
 
 
 
     return(
         <>
         <div className="comentarios">
-        <div className="comentarios-voltar"  onClick={()=>{callback(false)}}>
+        <a href="/home"><div className="comentarios-voltar">
             <img src={VOLTAR} alt="voltar"/>
             <span>Comentários</span>
         </div>
+        </a>
         
             <div className="postagem">
                 <div className="postagem-header">
                     <div className="postagem-header-left">
-                        <h3>{nomePostagem}</h3>
-                        <p>{horarioPostagem}</p>
+                        <h3>{postagem?.nome}</h3>
+                        <p>{formataHorario(postagem?.horario)}</p>
                     </div>
                     <div className="postagem-header-right">
                         <a><img src={LOCATIONICON}  alt="localizacao"/></a>
@@ -54,13 +71,13 @@ const Comentarios = ({texto,callback,comentarios, nomePostagem, horarioPostagem,
                 </div>
 
                 <div className="postagem-texto">
-                    {texto}
+                    {postagem?.descricao}
                 </div>
                  
                 
             </div>
             <div className="comentarios-lista">
-                {comentarios.map((comentario,idx) => {
+                {postagem?.comentarios.map((comentario,idx) => {
                     return(
                         <div key={`${idx}-${comentario.appUser.name}`} className="comentarios-lista-comentario">
                         <Comentario nome={comentario.appUser.name} dataPostagem={formataHorario(comentario.creationDate)}  texto={comentario.text}  />

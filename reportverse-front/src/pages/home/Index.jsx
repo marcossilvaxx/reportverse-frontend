@@ -33,10 +33,10 @@ const Home = () => {
             </div>
           </div>
           
-          {postagens.length>0 && postagens.map(postagem => {
+          {postagens.length>0 && postagens.map((postagem,idx) => {
             return(
           
-              <React.Fragment key={postagem.nome}>
+              <React.Fragment key={`${postagem.nome}-${idx}`}>
               <Postagem
                 horario={postagem.horario}
                 descricao={postagem.descricao}

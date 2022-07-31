@@ -2,7 +2,7 @@ import React from 'react';
 import { Map as MapContainer, TileLayer } from 'react-leaflet';
 import Marker from '../../components/Marker';
 
-function Map({ reports, focusedReport, width, height}) {
+function Map({ reports=[], focusedReport, width, height}) {
 
   return (
     <MapContainer
