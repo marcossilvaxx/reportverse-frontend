@@ -10,6 +10,10 @@
     
     display: flex;
 
+    @media(min-width:700px){
+        display: none;
+    }
+
     .menu-mobile-container{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;

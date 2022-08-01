@@ -3,8 +3,13 @@
     width: 80%;
     display: grid;
     align-items: center;
+    justify-content: center;
+    @media(min-width: 480px){
+        display: flex;
+        align-items: center;
+        width: 85%;
+    }
     margin-left: 8%;
-    
 }
 .comentario{
     width: 100%;
@@ -19,6 +24,7 @@
         padding-bottom: 0px;
         margin: 0;
         margin-right: 8px;
+        min-width: 110px;
 
         h3{
             font-weight: bold;
