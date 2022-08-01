@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Map as MapContainer, TileLayer } from 'react-leaflet';
 import Marker from '../../components/Marker';
 
-function Map({ reports=[], focusedReport, width, height}) {
-
+function Map({ reports = [], focusedReport, width, height, canManageReport = false }) {
   return (
     <MapContainer
       worldCopyJump={true}
@@ -26,7 +25,7 @@ function Map({ reports=[], focusedReport, width, height}) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
-      {reports.map((report, i) => <Marker key={i} id={i} {...report} showPopup={!focusedReport} />)}
+      {reports.map((report, i) => <Marker key={i} id={i} {...report} showPopup={!focusedReport} canManageReport={canManageReport} />)}
       {focusedReport && <Marker {...focusedReport} isFocused showPopup={false} />}
     </MapContainer>
   );

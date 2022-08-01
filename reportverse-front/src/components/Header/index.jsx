@@ -8,15 +8,13 @@ import localizacaoIcon from '../../assets/location.svg';
 import localizacaoAmareloIcon from '../../assets/location-amarelo.svg';
 import homeIcon from '../../assets/home.svg';
 import homeAmareloIcon from '../../assets/home-amarelo.svg';
-import profileIcon from '../../assets/profile.svg';
-import profileAmareloIcon from '../../assets/profile-amarelo.svg';
 import logoutIcon from '../../assets/logout.svg';
 
-function Header({ history }) {
+function Header({ history, showHeader }) {
   const pathname = history.location.pathname;
 
   return (
-    <div className="header-container">
+    <div style={{ display: showHeader && !["/", "/register"].includes(pathname) ? "flex" : "none" }} className="header-container">
       <img src={reportverseLogo} alt="Reportverse Logo" />
       <div className="navbar-menu">
         <Link to="/postar">
@@ -28,10 +26,11 @@ function Header({ history }) {
         <Link to="/home">
           <img src={pathname === "/home" ? homeAmareloIcon : homeIcon} alt="Home menu logo" />
         </Link>
-        <Link to="/profile">
-          <img src={pathname === "/profile" ? profileAmareloIcon : profileIcon} alt="Perfil menu logo" />
-        </Link>
-        <Link to="/logout">
+        <Link onClick={() => {
+          localStorage.removeItem("reportverse:user_token");
+
+          history.push("/");
+        }}>
           <img src={logoutIcon} alt="Logout menu logo" />
         </Link>
       </div>
@@ -39,4 +38,4 @@ function Header({ history }) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

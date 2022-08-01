@@ -1,0 +1,48 @@
+.leaflet-popup-content {
+  margin: 20px !important;
+}
+
+.modal-denuncia {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      strong {
+        font-size: 16px;
+      }
+
+      p {
+        margin: 0 !important;
+        font-size: 12px;
+        font-weight: 500;
+        color: #858585;
+      }
+    }
+
+    & > span {
+      background-color: #FF4949;
+      color: #fff;
+      padding: 1px 4px;
+      height: 17px;
+      border-radius: 4px;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      padding: 0;
+      width: 85px;
+      height: 25px;
+      font-size: 12px;
+      font-weight: 700;
+
+      &:nth-child(2) {
+        margin: 0 39px;
+      }
+    }
+  }
+}
