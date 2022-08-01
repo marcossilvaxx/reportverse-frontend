@@ -1,4 +1,6 @@
-
+a{
+    text-decoration: none;
+}
 .collapsible{
     padding-left: 12px;
 }
@@ -18,11 +20,21 @@
 
         .comentarios-lista{
             margin-top: 16px;
+            
+            
         }
     }
 
     .comentarios-lista{
         margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        
+        .comentarios-lista-comentario{
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
     }
 
     .comentarios-voltar{

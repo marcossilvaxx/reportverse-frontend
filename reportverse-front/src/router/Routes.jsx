@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
+import Comentarios from '../components/comentarios/Index';
+import DetalhesLocalizacao from '../components/DetalhesLocalizacao/Index';
 import Judgement from '../pages/admin/judgement';
 import Reports from '../pages/admin/reports';
 import Home from '../pages/home/Index';
@@ -30,6 +32,8 @@ function Routes() {
       <Route exact path="/mapa" component={Map} />
       <Route exact path="/admin" component={Reports} />
       <Route exact path="/admin/report/:id" component={Judgement} />
+      <Route exact path="/localizacao/:postagemId" component={DetalhesLocalizacao} />
+      <Route exact path="/comentarios/:postagemId" component={Comentarios} />
     </Switch>
   );
 }
