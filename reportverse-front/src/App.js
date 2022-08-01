@@ -1,14 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
-import Routes from './router/Routes';
 import Header from './components/Header';
 import useWindowSize from './hooks/useWindowSize';
+import Routes from './router/Routes';
 
 function App() {
-  const [width,] = useWindowSize();
+  const [width] = useWindowSize();
 
   return (
     <BrowserRouter>
-      {width > 768 ? <Header /> : null}
+      <Header showHeader={width > 768} />
       <Routes/>
     </BrowserRouter>
   );

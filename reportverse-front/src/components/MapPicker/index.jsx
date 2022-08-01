@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import { latLngBounds } from 'leaflet';
+import React, { useEffect, useRef } from 'react';
 import LocationPicker from 'react-leaflet-location-picker';
 
 
-function MapPicker({ onChangeCallback, width, height, mapStyle }) {
+const MapPicker = React.forwardRef(({ onChangeCallback, width, height, mapStyle }, ref) => {
   const points = useRef([]);
 
   const pointMode = {
@@ -17,8 +18,24 @@ function MapPicker({ onChangeCallback, width, height, mapStyle }) {
     }
   };
 
+  const pickerRef = useRef(null);
+
+  useEffect(() => {
+
+    (ref || pickerRef).current.refs.map.leafletElement.options.maxBounds = latLngBounds({
+      "lat": -7.21724,
+      "lng": -35.9127
+    }, {
+      "lat": -7.21109,
+      "lng": -35.9057
+    });
+
+    (ref || pickerRef).current.refs.map.leafletElement.options.minZoom = 17;
+  }, []);
+
   return (
     <LocationPicker 
+      ref={ref || pickerRef}
       mapStyle={{ ...mapStyle, height: height, width: width }} 
       pointMode={pointMode} 
       showInputs={false} 
@@ -26,6 +43,6 @@ function MapPicker({ onChangeCallback, width, height, mapStyle }) {
       startPort={{ center: [-7.21430, -35.9084], zoom: 17 }}
     />
   );
-}
+});
 
 export default MapPicker;
