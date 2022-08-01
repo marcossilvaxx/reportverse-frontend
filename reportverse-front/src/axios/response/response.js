@@ -1,22 +1,19 @@
 import axios from "axios";
 import React from "react";
+import getUserToken from "../../utils/getUserToken";
 
 
 const URL = "https://reportverse.herokuapp.com/api";
-const TOKEN = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb3VzYTAyNDBAZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDE2NTc2OCwidXNlclJvbGUiOlsiVU5JVkVSU0lUQVJJTyJdfQ.GfUk5QGK9wprkxoy6fe_4QL-x0a1a_Mq_MAHZyef27s';
-
-
-
 
 async function listarTodasPostagens(){  
     let postagens;
-    await axios.get(`${URL}/publicacao/todas`,{ 'headers': { 'Authorization': TOKEN } }).then(
+    await axios.get(`${URL}/publicacao/todas`,{ 'headers': { 'Authorization': `Bearer ${getUserToken()}` } }).then(
          async res => {
             
          postagens = await Promise.all(
             res.data.map( async post => { 
                 let nomeUser = "";
-                // await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': TOKEN} }).then(resposta => {
+                // await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} }).then(resposta => {
                 //     nomeUser = resposta.data.name;
                 // })        
                 const postagem = {
@@ -41,7 +38,7 @@ async function listarTodasPostagens(){
 
 
 async function denunciarPostagem(IdPostagem){
-    await axios.put(`${URL}/publicacao/${IdPostagem}/reportar`,{},{ 'headers': { 'Authorization': TOKEN} }).then(resposta =>{
+    await axios.put(`${URL}/publicacao/${IdPostagem}/reportar`,{},{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} }).then(resposta =>{
     console.log(resposta);
 });
 }
@@ -55,7 +52,7 @@ async function comentarPostagem(IdPostagem,mensagem){
         isAuthorAnonymous: false
     },
     { 
-        'headers':{ 'Authorization': TOKEN} 
+        'headers':{ 'Authorization': `Bearer ${getUserToken()}`} 
     }).then(resposta => {
         console.log(resposta);
     })
@@ -65,7 +62,7 @@ async function comentarPostagem(IdPostagem,mensagem){
 
 async function getPostagem(IdPostagem){
     let postagem;
-    await axios.get(`${URL}/publicacao/${IdPostagem}`,{ 'headers': { 'Authorization': TOKEN } }).then(post =>
+    await axios.get(`${URL}/publicacao/${IdPostagem}`,{ 'headers': { 'Authorization': `Bearer ${getUserToken()}` } }).then(post =>
         {
             postagem = {
                 horario: post.data.creationDate,

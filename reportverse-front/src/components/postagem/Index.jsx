@@ -12,6 +12,8 @@ import Comentarios from "../comentarios/Index";
 import { denunciarPostagem } from "../../axios/response/response";
 import DetalhesLocalizacao from "../DetalhesLocalizacao/Index";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import useWindowSize from "../../hooks/useWindowSize";
 
 
 
@@ -67,54 +69,74 @@ const Postagem = ({horario, descricao, latitude,longitude,nome,comentarios, imag
         }
       };
 
-      useEffect(()=>{
+    useEffect(()=>{
         convertBase64(imagem);
-      },[]);
+    },[]);
 
  
-
+    const [width] = useWindowSize();
 
     return(
-        
         <>
             <div className="postagem">
-        <div className="postagem-header">
-            <div className="postagem-header-left">
-                <h3>{nome}</h3>
-                <p>{formataHorario(horario)}</p>
-            </div>
-            <div className="postagem-header-right">
-                <a href={`/localizacao/${idPostagem}`}><img src={LOCATIONICON} alt={"localizacao"}/></a>
-            </div>
-        </div>
+                {width <= 768 && (
+                    <>
+                        <div className="postagem-header">
+                            <div className="postagem-header-left">
+                                <h3>{nome}</h3>
+                                <p>{formataHorario(horario)}</p>
+                            </div>
+                            <div className="postagem-header-right">
+                                <Link to={`/localizacao/${idPostagem}`}><img src={LOCATIONICON} alt={"localizacao"}/></Link>
+                            </div>
+                        </div>
 
-        <div className="postagem-texto">
-            {Collapsible(descricao)}
-        </div>
+                        <div className="postagem-texto">
+                            {Collapsible(descricao)}
+                        </div>
+                    </>
+                )}
 
-        <div className="postagem-foto">
-            <img src={baseImage} />
-        </div>
-
-        <div className="postagem-barra-acoes">
-            <div className="postagem-barra-acoes-conteudo">
-                <div className="postagem-barra-acoes-conteudo-left">
-                    <div onClick={()=>{setIsLiked(!isLiked)}}>
-                        {isLiked ? (<img src={LIKEACTIVE}/>) : (<img src={LIKENEUTRO}/>) }
-                    </div>
-                    <div className="postagem-barra-acoes-conteudo-left-comentario">
-                    <a href={`/comentarios/${idPostagem}`}><img src={COMENTAR} /></a> <span>ver comentarios</span>
-                    </div>
-                    
-                    
+                <div className="postagem-foto">
+                    <img src={baseImage} />
                 </div>
-                <div className="postagem-barra-acoes-conteudo-right" onClick={()=>{reportar()}}>
-                    {isReported ? (<img src={REPORTACTIVE}/>) : (<img src={REPORTNEUTRO}/>) }
-                </div>
-            </div>
 
-        </div>
-    </div>
+                <div className="postagem-barra-acoes">
+                    <div className="postagem-barra-acoes-conteudo">
+                        <div className="postagem-barra-acoes-conteudo-left">
+                            <div onClick={()=>{setIsLiked(!isLiked)}}>
+                                {isLiked ? (<img src={LIKEACTIVE}/>) : (<img src={LIKENEUTRO}/>) }
+                            </div>
+                            <div className="postagem-barra-acoes-conteudo-left-comentario">
+                            <Link to={`/comentarios/${idPostagem}`}><img src={COMENTAR} /></Link> <span>ver comentarios</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <div className="postagem-barra-acoes-conteudo-right" onClick={()=>{reportar()}}>
+                            {isReported ? (<img src={REPORTACTIVE}/>) : (<img src={REPORTNEUTRO}/>) }
+                        </div>
+                    </div>
+
+                </div>
+                {width > 768 && (
+                    <>
+                        <div className="postagem-header">
+                            <div className="postagem-header-left">
+                                <h3>{nome}</h3>
+                                <p>{formataHorario(horario)}</p>
+                            </div>
+                            <div className="postagem-header-right">
+                                <Link to={`/localizacao/${idPostagem}`}><img src={LOCATIONICON} alt={"localizacao"}/></Link>
+                            </div>
+                        </div>
+
+                        <div className="postagem-texto">
+                            {Collapsible(descricao)}
+                        </div>
+                    </>
+                )}
+            </div>
     </>
         
     )

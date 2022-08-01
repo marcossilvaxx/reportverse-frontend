@@ -5,15 +5,16 @@ import Postagem from "../../components/postagem/Index";
 import LOGOPRINCIPAL from "../../assets/REPORTVERSE-LOGO.png"
 import { listarTodasPostagens } from "../../axios/response/response";
 import { useEffect } from "react";
+import useWindowSize from "../../hooks/useWindowSize";
 
 
 
 
 
-const Home = () => {
-
-   
+const Home = () => {   
     const [postagens,setPostagens] = useState([]);
+
+    const [width] = useWindowSize();
     
     useEffect(()=>{
       pegarPostagens();
@@ -27,11 +28,13 @@ const Home = () => {
     return(
         <>
         <div className="home">
-          <div className="home-header">
-            <div className="home-header-limitador">
-              <img src={LOGOPRINCIPAL} alt="logo do reportverse"/>
+          {width <= 768 && (
+            <div className="home-header">
+              <div className="home-header-limitador">
+                <img src={LOGOPRINCIPAL} alt="logo do reportverse"/>
+              </div>
             </div>
-          </div>
+          )}
           
           {postagens.length>0 && postagens.map((postagem,idx) => {
             return(

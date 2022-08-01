@@ -6,7 +6,7 @@ import LOCATIONICON from "../../assets/location-icon.png";
 import { comentarPostagem } from "../../axios/response/response";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPostagem } from "../../axios/response/response";
 
 
@@ -53,11 +53,11 @@ const Comentarios = () => {
     return(
         <>
         <div className="comentarios">
-        <a href="/home"><div className="comentarios-voltar">
+        <Link to="/home"><div className="comentarios-voltar">
             <img src={VOLTAR} alt="voltar"/>
             <span>Comentários</span>
         </div>
-        </a>
+        </Link>
         
             <div className="postagem">
                 <div className="postagem-header">

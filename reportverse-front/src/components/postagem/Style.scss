@@ -181,6 +181,10 @@ a{
         flex-direction: row;
         justify-content: space-between;
 
+        @media(min-width: 769px) {
+            margin-top: 16px;
+        }
+
         .postagem-header-left{
             border-left: 2px solid #32B9BE;
             padding-left: 12px;

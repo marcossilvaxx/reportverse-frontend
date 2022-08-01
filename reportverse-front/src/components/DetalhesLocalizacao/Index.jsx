@@ -2,7 +2,7 @@ import React from "react";
 import "./Style.scss";
 import VOLTAR from "../../assets/voltar.png";
 import LOCATIONICON from "../../assets/location-icon.png";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPostagem } from "../../axios/response/response";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -40,12 +40,12 @@ const DetalhesLocalizacao = () => {
     return(
         <>
         <div className="detalhesLocalizacao">
-            <a href="/home">
+            <Link to="/home">
             <div className="detalhesLocalizacao-voltar">
                 <img src={VOLTAR} alt="voltar"/>
                 <span>Localização</span>
             </div>
-            </a>
+            </Link>
 
             <div className="postagem">
                 <div className="postagem-header">

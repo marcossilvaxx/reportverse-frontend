@@ -9,6 +9,7 @@ import POSTSELECT from "../../assets/postar-amarelo.png";
 import HOMESELECT from "../../assets/home-amarelo.png";
 import MAPASELECT from "../../assets/localizacao-amarelo.png";
 import PERFILSELECT from "../../assets/profile-amarelo.png";
+import { Link } from "react-router-dom";
 
 
 
@@ -48,21 +49,21 @@ const MenuMobile = ({selectIcon}) => {
         <div className="menu-mobile">
            <div className="menu-mobile-container">
 
-                <a href="./postar">
+                <Link to="/postar">
                     {postar ? (<img src={POSTSELECT}/>) : ( <img src={POST}/>)}
-                </a>
+                </Link>
 
-                <a href="./mapa">    
+                <Link to="/mapa">    
                     {mapa ? ( <img src={MAPASELECT}/>) : (<img src={MAPA}/>)}
-                </a>
+                </Link>
 
-                <a href="./home">
+                <Link to="/home">
                     {home ? ( <img src={HOMESELECT}/>) : (<img src={HOME}/>)}
-                </a>
+                </Link>
 
-                <a href="./perfil">
+                <Link to="/perfil">
                     {perfil ? ( <img src={PERFILSELECT}/>) : (<img src={PERFIL}/>)}
-                </a>
+                </Link>
             </div> 
         </div>
         </>
