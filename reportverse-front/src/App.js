@@ -8,7 +8,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {width > 768 ? <Header /> : null}
+      <Header showHeader={width > 768} />
       <Routes/>
     </BrowserRouter>
   );

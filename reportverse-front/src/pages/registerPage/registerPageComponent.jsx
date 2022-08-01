@@ -10,7 +10,7 @@ import logoMapa from '../../assets/Logo_Mapa.png';
 
 import './registerPageStyle.scss' ;
 
-function RegisterPage() {
+function RegisterPage({ history }) {
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -26,15 +26,18 @@ function RegisterPage() {
             return;
         }
         
-        const data = new FormData();
-        
-        data.append("name",nameRef.current.value);
-        data.append("password",passwordRef.current.value);
-        data.append("passwordConfirmation",confirmPasswordRef);
-        data.append("username",emailRef.current.value);
-
+        const data = {
+            name: nameRef.current.value,
+            password: passwordRef.current.value,
+            passwordConfirmation: confirmPasswordRef.current.value,
+            username: emailRef.current.value,
+        }
+    
         await axios.post('https://reportverse.herokuapp.com/api/usuario/cadastro', data);
-        console.log("Cadastro realizado com sucesso");
+
+        alert("Cadastro realizado com sucesso!");
+
+        history.push("/");
     }
 
     return(

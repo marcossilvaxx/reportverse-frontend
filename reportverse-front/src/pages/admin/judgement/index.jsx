@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import formatReport from '../../../utils/formatReport';
+import getUserToken from '../../../utils/getUserToken';
 
 function Judgement({ history }) {
   const [report, setReport] = useState(null);
@@ -17,7 +18,7 @@ function Judgement({ history }) {
     (async () => {
       const response = await axios.get(`https://reportverse.herokuapp.com/api/publicacao/${id}`, {
         headers: {
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+          "Authorization": `Bearer ${getUserToken()}`
         }
       });
 
@@ -31,7 +32,7 @@ function Judgement({ history }) {
   const releaseReport = async () => {
     await axios.put(`https://reportverse.herokuapp.com/api/publicacao/${id}/analisar`, undefined, {
       headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+        "Authorization": `Bearer ${getUserToken()}`
       }
     });
 
@@ -43,7 +44,7 @@ function Judgement({ history }) {
   const removeReport = async () => {
     await axios.delete(`https://reportverse.herokuapp.com/api/publicacao/${id}/analisar`, {
       headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+        "Authorization": `Bearer ${getUserToken()}`
       }
     });
 

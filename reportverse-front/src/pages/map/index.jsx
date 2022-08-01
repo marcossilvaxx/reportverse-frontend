@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import MapComponent from '../../components/Map';
+import getUserToken from '../../utils/getUserToken';
 
 import './styles.scss';
 
@@ -11,7 +12,7 @@ function Map() {
     (async () => {
       const response = await axios.get("https://reportverse.herokuapp.com/api/publicacao/todas", {
         headers: {
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvMTIzIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDM0MzU5NCwidXNlclJvbGUiOlsiVU5JVkVSU0lUQVJJTyJdfQ.thhdCrx0iaR5-RY47HoDGdFRGpdqTRJ8QFshILa1vLc"
+          "Authorization": `Bearer ${getUserToken()}`
         }
       });
 

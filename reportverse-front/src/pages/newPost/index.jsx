@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import MapPicker from '../../components/MapPicker';
+import getUserToken from '../../utils/getUserToken';
 
 import './styles.scss';
 
@@ -34,7 +35,7 @@ function NewPost({ history }) {
 
     await axios.post("https://reportverse.herokuapp.com/api/publicacao/cadastro", data, {
       headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+        "Authorization": `Bearer ${getUserToken()}`
       }
     });
 

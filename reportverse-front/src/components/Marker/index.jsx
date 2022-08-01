@@ -7,6 +7,7 @@ import Button from "../Button";
 
 import "./styles.scss";
 import axios from 'axios';
+import getUserToken from '../../utils/getUserToken';
 
 function Marker({ id, lat, lon, data, isFocused, showPopup = true, canManageReport = false }) {
   const icon = new Icon({
@@ -19,7 +20,7 @@ function Marker({ id, lat, lon, data, isFocused, showPopup = true, canManageRepo
   const resolveReport = async id => {
     await axios.put(`https://reportverse.herokuapp.com/api/publicacao/${id}/resolverDenuncia`, undefined, {
       headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+        "Authorization": `Bearer ${getUserToken()}`
       }
     });
 
@@ -31,7 +32,7 @@ function Marker({ id, lat, lon, data, isFocused, showPopup = true, canManageRepo
   const removeReport = async id => {
     await axios.delete(`https://reportverse.herokuapp.com/api/publicacao/${id}/analisar`, {
       headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW5pY2l1c21hcmNvc21hcnRpbnMyK2pvYW9AZ21haWwuY29tIiwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY2MDQyMTE1NSwidXNlclJvbGUiOlsiQURNSU5JU1RSQURPUiJdfQ.Wj8ZJuKwn_VrxBwaFuFRmwlhKejtPk65dxW_KbU2lK0"
+        "Authorization": `Bearer ${getUserToken()}`
       }
     });
 

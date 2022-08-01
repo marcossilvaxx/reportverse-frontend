@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Judgement from '../pages/admin/judgement';
 import Reports from '../pages/admin/reports';
 import Home from '../pages/home/Index';
@@ -7,8 +7,20 @@ import LoginPage from '../pages/loginPage/loginPageComponent';
 import Map from '../pages/map';
 import NewPost from '../pages/newPost';
 import RegisterPage from '../pages/registerPage/registerPageComponent';
+import getUserToken from '../utils/getUserToken';
 
 function Routes() {
+  const history = useHistory();
+
+  useEffect(() => {
+    const access_token = getUserToken();
+
+    if (!access_token) {
+      history.push("/")
+    }
+    
+  }, [])
+
   return (
     <Switch>
       <Route exact path="/" component={LoginPage} />

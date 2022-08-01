@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 import Button from '../../components/Button';
@@ -7,9 +7,10 @@ import LOGOPRINCIPAL from "../../assets/logo.png";
 import logoMapa from '../../assets/Logo_Mapa.png';
 
 import './loginPageStyle.scss' ;
+import axios from 'axios';
+import getUserToken from '../../utils/getUserToken';
 
-function LoginPage () {
-
+function LoginPage ({ history }) {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
@@ -26,10 +27,23 @@ function LoginPage () {
         data.append("username",emailRef.current.value);
         data.append("password",passwordRef.current.value);
 
-        response = await axios.post('https://reportverse.herokuapp.com/api/usuario/login', data);
+        const response = await axios.post('https://reportverse.herokuapp.com/api/login', data);
 
-        //pegar os token da response
+        const { access_token } = response.data;
+
+        localStorage.setItem("reportverse:user_token", access_token);
+
+        history.push("/home");
     }
+
+    useEffect(() => {
+        const access_token = getUserToken();
+    
+        if (access_token) {
+          history.push("/home")
+        }
+        
+      }, [])
 
     return(
         <>
