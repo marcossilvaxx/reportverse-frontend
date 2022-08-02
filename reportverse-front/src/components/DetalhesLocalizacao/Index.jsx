@@ -48,7 +48,7 @@ const DetalhesLocalizacao = () => {
             </Link>
 
             <div className="postagem">
-                <div className="postagem-header">
+                <div className="postagem-header" style={{"background":"#fff"}}>
                     <div className="postagem-header-left">
                         <h3>{postagem?.nome}</h3>
                         <p>{formataHorario(postagem?.horario)}</p>
@@ -67,12 +67,6 @@ const DetalhesLocalizacao = () => {
                 {postagem?<Map height={"100%"} width={"100%"} focusedReport={reportFocado}  />:null }
             </div>
 
-            <div className="detalhesLocalizacao-descricao">
-                <div>Descrição da Localização</div>
-                <div>
-
-                </div>
-            </div>
             
             
 

@@ -34,6 +34,9 @@
 
     .postagem{
         margin-top: 32px;
+        @media(min-width: 769px){
+            margin-left: 50px;
+        }
     }
 
     
@@ -46,8 +49,8 @@
         min-width: 280px;
         max-width: 800px;
 
-        @media(min-width:800px) {
-            margin-left:7%;
+        @media(min-width:769px) {
+            margin-left:3%;
         }
     }
     

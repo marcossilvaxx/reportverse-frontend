@@ -60,7 +60,7 @@ const Comentarios = () => {
         </Link>
         
             <div className="postagem">
-                <div className="postagem-header">
+                <div className="postagem-header" style={{"background":"#fff"}}>
                     <div className="postagem-header-left">
                         <h3>{postagem?.nome}</h3>
                         <p>{formataHorario(postagem?.horario)}</p>
