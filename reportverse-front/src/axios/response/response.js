@@ -85,10 +85,22 @@ async function getPostagem(IdPostagem){
         
 }
 
+async function getUserInfo() {
+    return (await axios.get(`${URL}/usuario/me`, {
+        headers: { 'Authorization': `Bearer ${getUserToken()}`}
+    })).data;
+}
 
 
 
-export {listarTodasPostagens,denunciarPostagem, comentarPostagem,getPostagem} 
+
+export {
+    listarTodasPostagens,
+    denunciarPostagem, 
+    comentarPostagem, 
+    getPostagem, 
+    getUserInfo
+} 
 
 
 

@@ -39,6 +39,8 @@ function NewPost({ history }) {
       }
     });
 
+    alert("Publicação criada com sucesso!");
+
     history.push("/mapa");
 
   }

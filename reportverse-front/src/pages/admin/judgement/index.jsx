@@ -5,6 +5,7 @@ import Map from '../../../components/Map';
 import Button from '../../../components/Button';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { withRouter } from "react-router-dom";
 import axios from 'axios';
 import formatReport from '../../../utils/formatReport';
 import getUserToken from '../../../utils/getUserToken';
@@ -105,4 +106,4 @@ function Judgement({ history }) {
   );
 }
 
-export default Judgement;
+export default withRouter(Judgement);
