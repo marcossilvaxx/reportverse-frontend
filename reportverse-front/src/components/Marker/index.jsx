@@ -8,6 +8,7 @@ import Button from "../Button";
 import "./styles.scss";
 import axios from 'axios';
 import getUserToken from '../../utils/getUserToken';
+import { Link } from 'react-router-dom';
 
 function Marker({ id, lat, lon, data, isFocused, showPopup = true, canManageReport = false }) {
   const icon = new Icon({
@@ -75,7 +76,9 @@ function Marker({ id, lat, lon, data, isFocused, showPopup = true, canManageRepo
                 </Button>
               </>
             )}
+            <Link to={`/detalhes/${id}`}>
             <Button>DETALHES</Button>
+            </Link>
           </div>
         </Popup>
       )}

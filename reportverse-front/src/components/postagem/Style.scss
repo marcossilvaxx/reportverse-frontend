@@ -18,6 +18,9 @@ a{
         margin-top: 32px;
         padding-bottom: 24px;
         border-bottom: 1px solid #EDEDED;
+        @media(min-width: 769px){
+            margin-left: 50px;
+        }
         
 
         .comentarios-lista{
@@ -31,10 +34,15 @@ a{
         display: flex;
         flex-direction: column;
         justify-content: left;
+        @media(min-width: 769px){
+            width: 100%;
+        }
         
         .comentarios-lista-comentario{
             margin-top: 6px;
             margin-bottom: 6px;
+            
+           
         }
     }
 
@@ -106,6 +114,8 @@ a{
     flex-direction: column;
     margin-bottom: 40px;
     max-width: 900px;
+
+    
     
 
     .postagem-barra-acoes{
@@ -122,6 +132,14 @@ a{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+
+            @media(min-width: 653px){
+                width: 95%;
+            }
+
+            .postagem-barra-acoes-conteudo-right:hover{
+                cursor: pointer;
+            }
 
             .postagem-barra-acoes-conteudo-left{
                 display: flex;
@@ -142,6 +160,9 @@ a{
 
                 
             }
+            .postagem-barra-acoes-conteudo-left:hover{
+                cursor: pointer;
+            }
         }
     }
 
@@ -155,12 +176,20 @@ a{
             max-width: 900px;
             height: auto;
         }
+
+        @media(min-width: 769px){
+            margin-top: 0px;
+        }
     }
     
    .postagem-texto{
         width: 85%;
         margin-top: 8px;
         color: #0E0E0E;
+        @media(min-width: 769px){
+            width: 100%;
+            margin-top: 8px;
+        }
 
         button{
             border: none;
@@ -183,11 +212,20 @@ a{
 
         @media(min-width: 769px) {
             margin-top: 16px;
+            width: 100%;
+            background-color: #32B9BE;
+            padding: 8px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            align-items: center;
+           
+            
         }
 
         .postagem-header-left{
             border-left: 2px solid #32B9BE;
             padding-left: 12px;
+            
 
             h3{
                 font-weight: bold;

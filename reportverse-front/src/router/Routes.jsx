@@ -11,6 +11,7 @@ import Map from '../pages/map';
 import NewPost from '../pages/newPost';
 import RegisterPage from '../pages/registerPage/registerPageComponent';
 import getUserToken from '../utils/getUserToken';
+import PostDetail from '../pages/post-detail';
 
 function Routes() {
   const history = useHistory();
@@ -43,6 +44,7 @@ function Routes() {
       </Route>
       <Route exact path="/localizacao/:postagemId" component={DetalhesLocalizacao} />
       <Route exact path="/comentarios/:postagemId" component={Comentarios} />
+      <Route exact path="/detalhes/:postagemId" component={PostDetail} />
     </Switch>
   );
 }
