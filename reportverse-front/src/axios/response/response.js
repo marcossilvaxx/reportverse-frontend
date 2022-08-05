@@ -11,11 +11,7 @@ async function listarTodasPostagens(){
          async res => {
             
          postagens = await Promise.all(
-            res.data.map( async post => { 
-                let nomeUser = "";
-                // await axios.get(`${URL}/usuario/${post.authorId}`,{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} }).then(resposta => {
-                //     nomeUser = resposta.data.name;
-                // })        
+            res.data.map( async post => {       
                 const postagem = {
                     horario: post.creationDate,
                     descricao: post.description,
@@ -73,11 +69,7 @@ async function getPostagem(IdPostagem){
                 comentarios: post.data.comments,
                 imagem: post.data.medias,
                 postagemId: post.data.id
-                }
-
-                
-
-            
+                }       
         })
         if(postagem != null){
             return postagem;
