@@ -20,8 +20,10 @@ async function listarTodasPostagens(){
                     nome: post.authorName,
                     comentarios: post.comments,
                     imagem: post.medias,
-                    postagemId: post.id
-                    }
+                    postagemId: post.id,
+                    reports: post.reports,
+                    likes: post.likes
+                }
                 return postagem;
             })
          )   
@@ -34,12 +36,12 @@ async function listarTodasPostagens(){
 
 
 async function denunciarPostagem(IdPostagem){
-    await axios.put(`${URL}/publicacao/${IdPostagem}/reportar`,{},{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} }).then(resposta =>{
-    console.log(resposta);
-});
+    await axios.put(`${URL}/publicacao/${IdPostagem}/reportar`,{},{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} });
 }
 
-
+async function curtirPostagem(IdPostagem){
+    await axios.put(`${URL}/publicacao/${IdPostagem}/curtir`,{},{ 'headers': { 'Authorization': `Bearer ${getUserToken()}`} });
+}
 
 async function comentarPostagem(IdPostagem,mensagem){
     await axios.post(`${URL}/publicacao/${IdPostagem}/comentario`,
@@ -68,8 +70,10 @@ async function getPostagem(IdPostagem){
                 nome: post.data.authorName,
                 comentarios: post.data.comments,
                 imagem: post.data.medias,
-                postagemId: post.data.id
-                }       
+                postagemId: post.data.id,
+                reports: post.data.reports,
+                likes: post.data.likes
+            }       
         })
         if(postagem != null){
             return postagem;
@@ -91,7 +95,8 @@ export {
     denunciarPostagem, 
     comentarPostagem, 
     getPostagem, 
-    getUserInfo
+    getUserInfo,
+    curtirPostagem
 } 
 
 

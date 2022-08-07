@@ -1,17 +1,23 @@
 .detalhesLocalizacao{
-    width: 100vw;
-    height: 100vh;
     background: #fff;
-    z-index: 2 !important;
-    position: absolute;
-    top: 0px;
     overflow: hidden;
+
+    @media(min-width:769px) {
+        margin: 0 15%;
+    }
+
+    @media(min-width:1025px) {
+        margin: 0 25%;
+    }
 
     a{
         text-decoration: none; 
     }
     
-    
+    &-content {
+        display: flex;
+        flex-direction: column;
+    }
 
     .detalhesLocalizacao-voltar{
         display: flex;
@@ -33,15 +39,37 @@
     }
 
     .postagem{
+        width: 100%;
         margin-top: 32px;
+
+        &-texto {
+            margin-left: 45px;
+        }
+
+        &-descricao-localizacao {
+            margin: 16px auto 0;
+            width: 80%;
+
+            h4 {
+                margin-bottom: 8px;
+            }
+
+            @media(min-width: 769px){
+                width: 100%;
+                max-width: 900px;
+                margin: 16px auto 0;
+            }
+        }
+
         @media(min-width: 769px){
-            margin-left: 50px;
+            margin: 0 auto;
         }
     }
 
     
     .detalhesLocalizacao-mapa{
-        width: 100%;
+        width: 80%;
+        margin: 0 auto;
         height: 45%;
            
         min-height: 220px;
@@ -50,7 +78,9 @@
         max-width: 800px;
 
         @media(min-width:769px) {
-            margin-left:3%;
+            width: 100%;
+            max-width: 900px;
+            margin: 16px auto;
         }
     }
     

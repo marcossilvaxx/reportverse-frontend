@@ -41,7 +41,7 @@ const Comentarios = () => {
 
       function formataHorario(horario){
         if(horario!= null){
-            const novoHorario = `${horario[8]+horario[9]} - ${horario[5]+horario[6]} - ${horario[0]+horario[1]+horario[2]+horario[3]}`
+            const novoHorario = new Date(horario).toLocaleString('pt-BR');
             return novoHorario;
         }
     }
@@ -51,54 +51,54 @@ const Comentarios = () => {
 
 
     return(
-        <>
-        <div className="comentarios">
-        <Link to="/home"><div className="comentarios-voltar">
-            <img src={VOLTAR} alt="voltar"/>
-            <span>Comentários</span>
-        </div>
-        </Link>
-        
-            <div className="postagem">
-                <div className="postagem-header" style={{"background":"#fff"}}>
-                    <div className="postagem-header-left">
-                        <h3>{postagem?.nome}</h3>
-                        <p>{formataHorario(postagem?.horario)}</p>
-                    </div>
-                    <div className="postagem-header-right">
-                        <a><img src={LOCATIONICON}  alt="localizacao"/></a>
-                    </div>
-                </div>
-
-                <div className="postagem-texto">
-                    {postagem?.descricao}
-                </div>
-                 
-                
+        <div className="comentarios-wrapper">
+            <div className="comentarios">
+            <Link to="/home"><div className="comentarios-voltar">
+                <img src={VOLTAR} alt="voltar"/>
+                <span>Comentários</span>
             </div>
-            <div className="comentarios-lista">
-                {postagem?.comentarios.map((comentario,idx) => {
-                    return(
-                        <div key={`${idx}-${comentario.appUser.name}`} className="comentarios-lista-comentario">
-                        <Comentario nome={comentario.appUser.name} dataPostagem={formataHorario(comentario.creationDate)}  texto={comentario.text}  />
+            </Link>
+            
+                <div className="postagem">
+                    <div className="postagem-header" style={{"background":"#fff"}}>
+                        <div className="postagem-header-left">
+                            <h3>{postagem?.nome}</h3>
+                            <p>{formataHorario(postagem?.horario)}</p>
                         </div>
-                    )
-                })}          
-            </div>
-
-            <div className="comentarios-digitar">
-                <div className="comentarios-digitar-container">
-                    <div className="comentarios-digitar-container-text">
-                        <input placeholder="digite algo..." value={comentario} name="comentario" onChange={handleChange}/>
+                        <div className="postagem-header-right">
+                            <a><img src={LOCATIONICON}  alt="localizacao"/></a>
+                        </div>
                     </div>
-                    <div className="comentarios-digitar-container-action" onClick={()=> {comentar()}}>
-                        Comentar
+
+                    <div className="postagem-texto">
+                        {postagem?.descricao}
+                    </div>
+                    
+                    
+                </div>
+                <div className="comentarios-lista">
+                    {postagem?.comentarios.map((comentario,idx) => {
+                        return(
+                            <div key={`${idx}-${comentario.appUser.name}`} className="comentarios-lista-comentario">
+                            <Comentario nome={comentario.appUser.name} dataPostagem={formataHorario(comentario.creationDate)}  texto={comentario.text}  />
+                            </div>
+                        )
+                    })}          
+                </div>
+
+                <div className="comentarios-digitar">
+                    <div className="comentarios-digitar-container">
+                        <div className="comentarios-digitar-container-text">
+                            <input placeholder="digite algo..." value={comentario} name="comentario" onChange={handleChange}/>
+                        </div>
+                        <div className="comentarios-digitar-container-action" onClick={()=> {comentar()}}>
+                            Comentar
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         
-        </>
+        </div>
         
     )
 

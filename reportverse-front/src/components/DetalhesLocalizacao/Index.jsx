@@ -24,7 +24,7 @@ const DetalhesLocalizacao = () => {
 
       function formataHorario(horario){
         if(horario!= null){
-            const novoHorario = `${horario[8]+horario[9]} - ${horario[5]+horario[6]} - ${horario[0]+horario[1]+horario[2]+horario[3]}`
+            const novoHorario = new Date(horario).toLocaleString('pt-BR');
             return novoHorario;
         }
     }
@@ -33,9 +33,6 @@ const DetalhesLocalizacao = () => {
         lat: postagem?.latitude,
         lon: postagem?.longitude
     }
-
-
-
 
     return(
         <>
@@ -47,29 +44,32 @@ const DetalhesLocalizacao = () => {
             </div>
             </Link>
 
-            <div className="postagem">
-                <div className="postagem-header" style={{"background":"#fff"}}>
-                    <div className="postagem-header-left">
-                        <h3>{postagem?.nome}</h3>
-                        <p>{formataHorario(postagem?.horario)}</p>
+            <div className="detalhesLocalizacao-content">
+                <div className="postagem">
+                    <div className="postagem-header" style={{"background":"#fff"}}>
+                        <div className="postagem-header-left">
+                            <h3>{postagem?.nome}</h3>
+                            <p>{formataHorario(postagem?.horario)}</p>
+                        </div>
+                        
+                    </div>
+
+                    <div className="postagem-texto">
+                        {postagem?.descricao}
                     </div>
                     
                 </div>
 
-                <div className="postagem-texto">
-                    {postagem?.descricao}
+                
+                <div className="detalhesLocalizacao-mapa">
+                    {postagem?<Map height="396px" width={"100%"} focusedReport={reportFocado}/>:null }
                 </div>
-                 
+
+                <div className="postagem-descricao-localizacao">
+                    <h4>Descrição da localização</h4>
+                    {postagem?.locationDescription || "-"}
+                </div>
             </div>
-
-            
-            <div className="detalhesLocalizacao-mapa">
-                {postagem?<Map height={"100%"} width={"100%"} focusedReport={reportFocado}  />:null }
-            </div>
-
-            
-            
-
         </div>
         </>
     )

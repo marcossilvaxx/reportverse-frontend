@@ -12,6 +12,8 @@ import NewPost from '../pages/newPost';
 import RegisterPage from '../pages/registerPage/registerPageComponent';
 import getUserToken from '../utils/getUserToken';
 import PostDetail from '../pages/post-detail';
+import ForgotPassword from '../pages/forgotPassword';
+import RecoverPassword from '../pages/recoverPassword';
 
 function Routes() {
   const history = useHistory();
@@ -19,7 +21,11 @@ function Routes() {
   useEffect(() => {
     const access_token = getUserToken();
 
-    if (!access_token) {
+    const isPublicAccess = ["/", "/register", "/esqueci-minha-senha", "/recuperacao-senha"].includes(
+      `/${history.location.pathname.split('/')[1]}`
+    );
+
+    if (!access_token && !isPublicAccess) {
       history.push("/");
     }
     
@@ -29,6 +35,8 @@ function Routes() {
     <Switch>
       <Route exact path="/" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
+      <Route exact path="/esqueci-minha-senha" component={ForgotPassword} />
+      <Route exact path="/recuperacao-senha/:recover_token" component={RecoverPassword} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/postar" component={NewPost} />
       <Route exact path="/mapa" component={Map} />

@@ -6,39 +6,32 @@ import Button from '../../components/Button';
 import LOGOPRINCIPAL from "../../assets/logo.png";
 import logoMapa from '../../assets/Logo_Mapa.png';
 
-import './loginPageStyle.scss' ;
+import './styles.scss' ;
 import axios from 'axios';
 import getUserToken from '../../utils/getUserToken';
-import { getUserInfo } from '../../axios/response/response';
 
-function LoginPage ({ history }) {
+function ForgotPassword ({ history }) {
     const emailRef = useRef(null);
-    const passwordRef = useRef(null);
 
-    const isValid = () => !!(emailRef.current.value && passwordRef.current.value);
+    const isValid = () => !!(emailRef.current.value);
 
     const handleSubmit = async () => {
         if(!isValid()) {
             alert("Preencha todos os campos");
             return;
         }
-        
-        const data = new FormData();
 
-        data.append("username",emailRef.current.value);
-        data.append("password",passwordRef.current.value);
+        try {
+            await axios.post('https://reportverse.herokuapp.com/api/senha/esqueci-senha', emailRef.current.value, {
+                headers: { 'Content-Type': 'text/plain'}
+            });
 
-        const response = await axios.post('https://reportverse.herokuapp.com/api/login', data);
+            alert("Link de recuperação de senha enviado! Verifique sua caixa de entrada.")
 
-        const { access_token } = response.data;
-
-        localStorage.setItem("reportverse:user_token", access_token);
-
-        history.push("/home");
-
-        const userInfo = await getUserInfo();
-
-        localStorage.setItem("reportverse:user_info", JSON.stringify(userInfo));
+            history.push("/");
+        } catch (error) {
+            alert(error?.response?.data?.message);
+        }
     }
 
     useEffect(() => {
@@ -51,7 +44,7 @@ function LoginPage ({ history }) {
       }, [])
 
     return(
-        <div className="login-wrapper">
+        <div className="forgot-wrapper">
             <div className="split left">
                 <div className='centered'>
                     <h1> Se junte ao <strong>ReportVerse </strong> para ajudar a comunidade academica a melhorar a infraestrutura da UFCG </h1>
@@ -69,16 +62,11 @@ function LoginPage ({ history }) {
                         <input name = "login" placeholder='Insira o seu email de login' ref={emailRef}></input>
                     </section>
 
-                    <section>
-                        <h5>Senha</h5>
-                        <input type = "password" name = "senha" placeholder='Insira a sua senha' ref={passwordRef}></input>
-                    </section>
-
                     <Button className="Button" onClick={handleSubmit}>
-                        Fazer Login
+                        Enviar email de recuperação
                     </Button>
                     <div className='final'>
-                        <h6><Link to="/esqueci-minha-senha">Esqueci minha senha</Link></h6>
+                        <h6>Fazer <Link to="/" className="green-link">login</Link></h6>
                         <p><hr/>OU<hr/></p>
                         <h6>Cadastre sua conta <Link to="/register" className="green-link">aqui</Link></h6>
                     </div>
@@ -88,4 +76,4 @@ function LoginPage ({ history }) {
     )
 }
 
-export default LoginPage;
+export default ForgotPassword;

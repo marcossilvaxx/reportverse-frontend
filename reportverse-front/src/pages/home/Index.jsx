@@ -49,11 +49,10 @@ const Home = () => {
                 comentarios={postagem.comentarios}
                 imagem={postagem.imagem}
                 idPostagem={postagem.postagemId}
-                />
+                reports={postagem.reports}
+                likes={postagem.likes}
+              />
               </React.Fragment>
-              
-              
-              
             )
           })}
                   

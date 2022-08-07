@@ -169,12 +169,22 @@ a{
     .postagem-foto{
         margin-top: 16px;
         padding-bottom: 0px;
+
+        width: 100%;
+        text-align: center;
+        background-color: #000000;
+        overflow: hidden;
+
        
         img{
-            background-size: cover;
-            width: 100vw;
-            max-width: 900px;
-            height: auto;
+            width: 100%;
+            max-height: 500px;
+
+            @media(min-width: 769px){
+                min-width: 500px;
+                width: auto;
+                height: 500px;
+            }
         }
 
         @media(min-width: 769px){

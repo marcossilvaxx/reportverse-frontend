@@ -1,3 +1,49 @@
 .comentarios-digitar-container-action:hover{
     cursor: pointer;
 }
+
+.comentarios-wrapper .comentarios {
+    position: initial;
+    top: auto;
+    z-index: auto !important;
+    height: auto;
+    width: auto;
+
+    @media(min-width:769px) {
+        margin: 0 15%;
+    }
+
+    @media(min-width:1025px) {
+        margin: 0 25%;
+    }
+
+    &-lista-comentario {
+        padding: 0 36px;
+        
+        .comentario-center {
+            width: 100%;
+            border-left: 2px solid #32B9BE;
+            padding-left: 12px;
+            display: block;
+
+            .comentario .comentario-texto {
+                font-size: 1em;
+            }
+        }
+    }
+
+    .comentarios-digitar {
+        z-index: auto !important;
+        position: initial;
+        bottom: auto !important;
+        margin-top: 24px;
+
+        .comentarios-digitar-container .comentarios-digitar-container-text {
+            width: 90%;
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,72 +1,113 @@
-section {
-    margin: 24px 16px 0;
+.login-wrapper {
+  display: flex;
 
-    h5 {
-      font-weight: 500;
-      font-size: 14px;
+  a {
+    color: #000000;
+  }
+
+  .final {
+    width: 100%;
+    text-align: center;
+
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
 
-    textarea {
-      width: 60%;
-      resize: none;
-      max-height: 100px;
-      background-color: #EDEDED;
-      border-radius: 4px;
-      border: none;
-      margin-top: 8px;
-      padding: 12px;
-    }
-}
-.imagem {
-    margin-left: 11%;
-}
+  section {
+      margin: 24px 16px 0;
+      width: 100%;
 
-.split {
-    height: 100%;
+      h5 {
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      textarea {
+        width: 60%;
+        resize: none;
+        max-height: 100px;
+        background-color: #EDEDED;
+        border-radius: 4px;
+        border: none;
+        margin-top: 8px;
+        padding: 12px;
+      }
+
+      input {
+        width: 100%;
+        resize: none;
+        max-height: 100px;
+        background-color: #EDEDED;
+        border-radius: 4px;
+        border: none;
+        margin-top: 8px;
+        padding: 12px;
+      }
+  }
+
+  .split {
+    height: 100vh;
     width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
   
   .left {
-    top: 8%;
-    left: 0;
     background-color: #32B9BE;
     color: white;
-    
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
-  
+
   .right {
-    top: 10%;
-    left: 60%
+    .right-content {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: 768px) {
+        width: 80%;
+      }
+    }
   }
-  
+
   .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    h1 {
+      text-align: center;
+    }
   }
 
   .Button {
     background-color: #32B9BE;
     display: block;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 12px;
 
 
-    padding: 8px 12px;
+    padding: 12px;
 
     font-size: 12px;
     cursor: pointer;
     color: #fff;
 
-    width: 62%;
-    height: 30px;
+    width: 100%;
     border-radius: 4px;
 
     input {
@@ -76,11 +117,13 @@ section {
   }
 
   hr{
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin: 26px 8px;
     border: 0;
     border-top: 1px solid #32B9BE;
     width: 62%;
   }
 
-
+  .green-link {
+    color: #32B9BE;
+  }
+}

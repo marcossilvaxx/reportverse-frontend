@@ -1,6 +1,28 @@
 .detalhes-postagem{
     
     .comentarios{
-        overflow:auto;
+        position: initial;
+        top: auto;
+        z-index: auto !important;
+        height: auto;
+
+        .postagem {
+            @media(min-width:769px) {
+                width: 100%;
+                max-width: 900px;
+                margin: 16px auto;
+            }
+        }
+
+        @media(min-width:769px) {
+            margin: 0 15%;
+            width: auto;
+        }
+
+        @media(min-width:1025px) {
+            margin: 0 25%;
+        }
+
+        
     }
 }

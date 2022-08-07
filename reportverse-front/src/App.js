@@ -10,7 +10,9 @@ function App() {
 
   return (
     <>
-      {(width > 768 && !["/", "/register"].includes(pathname)) && <Header/>}
+      {(width > 768 && !["/", "/register", "/esqueci-minha-senha", "/recuperacao-senha"].includes(
+        `/${pathname.split('/')[1]}`
+      )) && <Header/>}
       <Routes/>
     </>
   );
