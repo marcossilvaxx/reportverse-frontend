@@ -34,6 +34,8 @@ const DetalhesLocalizacao = () => {
         lon: postagem?.longitude
     }
 
+    console.log(postagem?.locationDescription);
+
     return(
         <>
         <div className="detalhesLocalizacao">

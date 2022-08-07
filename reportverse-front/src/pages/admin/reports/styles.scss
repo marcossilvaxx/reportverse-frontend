@@ -4,5 +4,14 @@
   h2 {
     font-size: 32px;
     margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-top: 40px;
+    }
+  }
+
+  .report-download-button {
+    padding: 16px 80px;
+    font-size: 16px;
   }
 }

@@ -54,6 +54,8 @@ function Judgement({ history }) {
     history.push("/admin");
   };
 
+  console.log(report);
+
 
   if (!report) {
     return;
@@ -79,7 +81,7 @@ function Judgement({ history }) {
           <div className="judgement-description">
             <p>{report.data.description}</p>
             <strong>Descrição da localização</strong>
-            <p>-</p>
+            <p>{report.data.locationDescription || "-"}</p>
             <div className="judgement-buttons">
               <Button 
                 variation="success"

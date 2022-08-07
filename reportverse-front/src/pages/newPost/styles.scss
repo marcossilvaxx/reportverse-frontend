@@ -1,3 +1,18 @@
+.newpost-mobile-header {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0px;
+  background: #fff;
+  width: 100%;
+  padding-top: 11px ;
+  padding-bottom: 11px;
+
+  .newpost-mobile-header-limitador{
+    width: 85%;
+  }
+}
+
 .container-newpost {
   display: flex;
   flex-direction: column;

@@ -1,7 +1,7 @@
 .menu-mobile{
     height: 40px;
     width: 100%;
-    z-index: 1;
+    z-index: 1000;
     background-color: #32B9BE;
     position: fixed;
     bottom: 0px;
@@ -10,14 +10,15 @@
     
     display: flex;
 
-    @media(min-width:700px){
+    @media(min-width: 768px){
         display: none;
     }
 
     .menu-mobile-container{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: 67px;
-
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 0 50px;
     }
 }

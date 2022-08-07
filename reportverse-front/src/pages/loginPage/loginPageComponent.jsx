@@ -28,17 +28,21 @@ function LoginPage ({ history }) {
         data.append("username",emailRef.current.value);
         data.append("password",passwordRef.current.value);
 
-        const response = await axios.post('https://reportverse.herokuapp.com/api/login', data);
+        try {
+            const response = await axios.post('https://reportverse.herokuapp.com/api/login', data);
 
-        const { access_token } = response.data;
-
-        localStorage.setItem("reportverse:user_token", access_token);
-
-        history.push("/home");
-
-        const userInfo = await getUserInfo();
-
-        localStorage.setItem("reportverse:user_info", JSON.stringify(userInfo));
+            const { access_token } = response.data;
+            
+            localStorage.setItem("reportverse:user_token", access_token);
+    
+            history.push("/home");
+    
+            const userInfo = await getUserInfo();
+    
+            localStorage.setItem("reportverse:user_info", JSON.stringify(userInfo));
+        } catch (error) {
+            alert("Erro ao tentar realizar login. Verifique a senha e tente novamente.")
+        }
     }
 
     useEffect(() => {

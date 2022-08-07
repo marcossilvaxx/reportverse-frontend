@@ -34,9 +34,12 @@
 
     .comentarios-digitar {
         z-index: auto !important;
-        position: initial;
-        bottom: auto !important;
         margin-top: 24px;
+
+        @media(min-width:769px) {
+            position: initial;
+            bottom: auto !important;
+        }
 
         .comentarios-digitar-container .comentarios-digitar-container-text {
             width: 90%;

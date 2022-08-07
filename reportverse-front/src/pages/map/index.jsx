@@ -1,12 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import MapComponent from '../../components/Map';
+import MenuMobile from '../../components/menuMobile/Index';
+import useWindowSize from '../../hooks/useWindowSize';
 import getUserToken from '../../utils/getUserToken';
+import LOGOPRINCIPAL from "../../assets/REPORTVERSE-LOGO.png"
+
 
 import './styles.scss';
 
 function Map() {
   const [reports, setReports] = useState([]);
+
+  const [width] = useWindowSize();
 
   useEffect(() => {
     (async () => {
@@ -32,11 +38,21 @@ function Map() {
   }, []);
 
   return (
-    <MapComponent 
-      reports={reports}
-      width="100%"
-      height={window.innerHeight - 80}
-    />
+    <>
+      {width <= 768 && (
+        <div className="newpost-mobile-header">
+          <div className="newpost-mobile-header-limitador">
+            <img src={LOGOPRINCIPAL} alt="logo do reportverse"/>
+          </div>
+        </div>
+      )}
+      <MapComponent 
+        reports={reports}
+        width="100%"
+        height={window.innerHeight - 80}
+      />
+      <MenuMobile selectIcon="mapa" />
+    </>
   );
 }
 

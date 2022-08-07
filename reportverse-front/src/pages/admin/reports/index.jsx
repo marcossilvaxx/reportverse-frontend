@@ -1,6 +1,7 @@
 import './styles.scss';
 import ReportsList from './components/ReportsList';
 import Map from '../../../components/Map';
+import Button from '../../../components/Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import getUserToken from '../../../utils/getUserToken';
@@ -42,6 +43,18 @@ function Reports() {
     }
   });
 
+  const handleReportsDownload = async () => {
+    try {
+      await axios.get("https://reportverse.herokuapp.com/api/estatisticas/download", {
+        headers: {
+          "Authorization": `Bearer ${getUserToken()}`
+        }
+      });
+    } catch (error) {
+      alert(error?.response?.data?.message);
+    }
+  }
+
   return (
     <div className="reports-container">
       <section>
@@ -58,6 +71,10 @@ function Reports() {
           height="550px"
           canManageReport
         />
+      </section>
+      <section>
+        <h2>Baixar relatório de denúncias</h2>
+        <Button className="report-download-button" variation="danger" onClick={handleReportsDownload}>Download</Button>
       </section>
     </div>
   );

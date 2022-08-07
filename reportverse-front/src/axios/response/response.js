@@ -72,7 +72,8 @@ async function getPostagem(IdPostagem){
                 imagem: post.data.medias,
                 postagemId: post.data.id,
                 reports: post.data.reports,
-                likes: post.data.likes
+                likes: post.data.likes,
+                locationDescription: post.data.locationDescription
             }       
         })
         if(postagem != null){

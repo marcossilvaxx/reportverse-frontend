@@ -7,7 +7,8 @@ const formatReport = (report) => ({
     name: report.authorName,
     time: new Date(report.creationDate).toLocaleTimeString("pt-BR"),
     date: new Date(report.creationDate).toLocaleDateString("pt-BR"),
-    isResolved: report.isResolved
+    isResolved: report.isResolved,
+    locationDescription: report.locationDescription,
   }
 });
 
